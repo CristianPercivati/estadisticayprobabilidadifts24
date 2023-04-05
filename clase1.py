@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import math
 
 def esPar(num):
     if num%2==0:
@@ -42,16 +43,23 @@ def mediana(poblacion):
         plt.ylabel("Población")
         plt.show()
         return mediana
-    
 
 def cuartiles(poblacion):
     poblacion.sort()
     n = len(poblacion)
+    p = [(n+1)*0.25, (n+1)*0.5,(n+1)*0.75]
     cuartil = []
     cuartil.append(poblacion[0])
-    cuartil.append(poblacion(n+1)*0.25-1)
-    cuartil.append(mediana(poblacion))
-    cuartil.append((n+1)*0.75-1)
+    
+    for percentil in p:
+        if percentil%1:
+            pos = math.floor(percentil)-1
+            print (percentil, pos)
+            cuartil.append(promedio([poblacion[pos],poblacion[pos+1]]))
+        else:
+            pos = int(percentil)-1
+            cuartil.append(poblacion[pos])
+            
     cuartil.append(poblacion[-1])
     return cuartil
 
@@ -61,9 +69,8 @@ def percentiles(poblacion,valor):
         posDato = poblacion.index(valor)
     except:
         return False
-
     percentil = ((posDato-0.5)/n)*100
     return percentil
 
-print(cuartiles([55,10,24,25,26,30,255]))
+print(cuartiles([12, 5, 8, 17, 21, 15, 9, 3, 10, 20]))
 
