@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+import numpy as np
 import math
 
 def esPar(num):
@@ -7,41 +8,35 @@ def esPar(num):
     else:
         return False
     
+def graficar(poblacion,tipo,num=False):
+    plt.plot(poblacion)
+    plt.plot(poblacion,"o")
+    print(num)
+    if num:
+        plt.axhline(y=num, color='r', linestyle='-')
+        plt.title(f'{tipo}: {num}')
+    else:
+        plt.title(f'{tipo}: {poblacion}')
+    plt.ylabel("Población")
+    plt.show()
+    
 def promedio(poblacion):
     n = len(poblacion)
     sumatoria = 0
     for i in poblacion:
         sumatoria = sumatoria+i
     media = sumatoria/n
-    plt.plot(poblacion)
-    plt.axhline(y=media, color='r', linestyle='-')
-    plt.title("Promedio: "+str(media))
-    plt.ylabel("Población")
-    plt.show()
     return media
 
 def mediana(poblacion):
     poblacion.sort()
     totalNum = len(poblacion)
-    percentil = []
-    for num in poblacion:
-        percentil.append(percentiles(poblacion,num))
-
     if esPar(totalNum):
-        mediana = promedio([poblacion[int(totalNum/2)], poblacion[int((totalNum/2)+1)]])
-        plt.plot(poblacion)
-        plt.axhline(y=mediana, color='r', linestyle='-')
-        plt.title("Mediana: "+str(mediana))
-        plt.ylabel("Población")
-        plt.show()
+        pos = math.floor(int(totalNum/2))-1
+        mediana = promedio([poblacion[pos], poblacion[pos+1]])
         return mediana
     else:
         mediana = poblacion[int((totalNum+1)/2)-1]
-        plt.plot(poblacion)
-        plt.axhline(y=mediana, color='r', linestyle='-')
-        plt.title("Mediana: "+str(mediana))
-        plt.ylabel("Población")
-        plt.show()
         return mediana
 
 def cuartiles(poblacion):
@@ -54,8 +49,7 @@ def cuartiles(poblacion):
     for percentil in p:
         if percentil%1:
             pos = math.floor(percentil)-1
-            print (percentil, pos)
-            cuartil.append(promedio([poblacion[pos],poblacion[pos+1]]))
+            cuartil.append(promedio( [poblacion[pos] , poblacion[pos+1]] ))
         else:
             pos = int(percentil)-1
             cuartil.append(poblacion[pos])
@@ -64,13 +58,25 @@ def cuartiles(poblacion):
     return cuartil
 
 def percentiles(poblacion,valor):
+    poblacion.sort()
     n = len(poblacion)
-    try:
-        posDato = poblacion.index(valor)
-    except:
-        return False
-    percentil = ((posDato-0.5)/n)*100
-    return percentil
+    percentil = ((valor/100)*(n+1))
+    if percentil%1:
+        pos = math.floor(percentil)-1
+        print(pos)
+        percentil = promedio([poblacion[pos], poblacion[pos+1]])
+    else:
+        percentil = poblacion[int(percentil)]
+    devuelto = {"percentil": percentil, "num": valor}
+    return devuelto
 
-print(cuartiles([12, 5, 8, 17, 21, 15, 9, 3, 10, 20]))
+poblacion = [12, 5, 8, 17, 21, 15, 9, 3, 10, 20]
 
+#Para probar, simplemente descomentar las funciones necesarias acá abajo:
+
+#graficar(poblacion, "Promedio", promedio(poblacion))
+#graficar(poblacion, "Mediana", mediana(poblacion))
+#graficar(cuartiles(poblacion), "Cuartiles")
+
+#calcPercentiles = percentiles(poblacion,21)
+#graficar(poblacion, f"Percentil de {calcPercentiles['num']}", calcPercentiles["percentil"])
