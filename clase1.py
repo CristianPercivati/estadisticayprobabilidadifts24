@@ -70,6 +70,26 @@ def percentiles(poblacion,valor):
     devuelto = {"percentil": percentil, "num": valor}
     return devuelto
 
+def varianza(muestra):
+    n = len(muestra)
+    media = promedio(muestra)
+    sumatoria = 0
+    numMedia = 0
+    numMediaPow = 0
+    
+    for num in muestra:
+        numMedia = num - media
+        numMediaPow = pow(numMedia,2)
+        sumatoria = sumatoria+numMediaPow
+        print(sumatoria)
+    
+    varianza = sumatoria/(n-1)
+    return varianza
+
+def desviacionEstandar(muestra):
+    varian = varianza(muestra)
+    return math.sqrt(varian)
+
 poblacion = [12, 5, 8, 17, 21, 15, 9, 3, 10, 20]
 
 #Para probar, simplemente descomentar las funciones necesarias acá abajo:
