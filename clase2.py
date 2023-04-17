@@ -16,7 +16,7 @@ import seaborn as sns
 
 
 ## Datos IRIS
-datos = pd.read_csv("E:/Ivan/IFST24/Estadistica/2023/Clase 2/iris.csv", index_col=0)
+datos = pd.read_csv("iris.csv", index_col=0)
 
 print(datos)
 
