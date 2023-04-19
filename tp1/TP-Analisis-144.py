@@ -12,6 +12,9 @@ def agruparPorEdad():
   cond = [(df['edad_persona_en_situacion_de_violencia']<10),(df['edad_persona_en_situacion_de_violencia']<20),(df['edad_persona_en_situacion_de_violencia']<30),(df['edad_persona_en_situacion_de_violencia']<40),(df['edad_persona_en_situacion_de_violencia']<50),(df['edad_persona_en_situacion_de_violencia']<=60),(df['edad_persona_en_situacion_de_violencia']>6)]
   df['grupo_edad'] = np.select(cond,edades)
 
+def edadPromedio():
+  return df['edad_persona_en_situacion_de_violencia'].mean()
+
 agruparPorEdad()
 
 print(df)
@@ -24,7 +27,6 @@ print(df)
 #-vínculo con el agresor
 #-edad menor
 #-edad mayor
-#-edad promedio
 #-dispersión por edades
 #-moda de edad
 #-mediana de edad
