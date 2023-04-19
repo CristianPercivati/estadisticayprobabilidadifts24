@@ -2,17 +2,25 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-data = pd.read_csv('datos-144-2020.csv')
+df = pd.read_csv('datos-144-2020.csv')
 
 def totalCasos():
-    return data.count()[0]
+    return df.count()[0]
+
+def agruparPorEdad():
+  edades = ["de 0 a 10 años","de 10 a 20 años","de 20 a 30 años", "de 30 a 40 años", "de 40 a 50 años", "de 50 a 60 años", "más de 60 años"]
+  cond = [(df['edad_persona_en_situacion_de_violencia']<10),(df['edad_persona_en_situacion_de_violencia']<20),(df['edad_persona_en_situacion_de_violencia']<30),(df['edad_persona_en_situacion_de_violencia']<40),(df['edad_persona_en_situacion_de_violencia']<50),(df['edad_persona_en_situacion_de_violencia']<=60),(df['edad_persona_en_situacion_de_violencia']>6)]
+  df['grupo_edad'] = np.select(cond,edades)
+
+agruparPorEdad()
+
+print(df)
 
 #def distribucionProvincias():
 #   return [maxima, minima, totalProvincia]
 
 #def distribucionEdad():
 #-cantidad de menores y adultos
-#-agrupación por edades
 #-vínculo con el agresor
 #-edad menor
 #-edad mayor
