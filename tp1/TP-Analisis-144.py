@@ -15,6 +15,9 @@ def agruparPorEdad():
 def edadPromedio():
   return df['edad_persona_en_situacion_de_violencia'].mean()
 
+def edadMax():
+  return df['edad_persona_en_situacion_de_violencia'].max()
+
 agruparPorEdad()
 
 print(df)
