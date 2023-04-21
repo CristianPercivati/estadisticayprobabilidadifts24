@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-df = pd.read_csv('datos-144-2020.csv')
+df = pd.read_csv('/content/drive/MyDrive/Estadística y Probabilidad/TP1/dataset2020.csv')
 
 def totalCasos():
     return df.count()[0]
@@ -18,9 +18,37 @@ def edadPromedio():
 def edadMax():
   return df['edad_persona_en_situacion_de_violencia'].max()
 
-agruparPorEdad()
+def edadMin():
+  return df['edad_persona_en_situacion_de_violencia'].min()
 
-print(df)
+def contarMenores():
+  return df[(df.edad_persona_en_situacion_de_violencia<18) & (df.edad_persona_en_situacion_de_violencia>0)].count()[0]
+
+def contarAdultos():
+  return df[df.edad_persona_en_situacion_de_violencia>17].count()[0]
+
+def contarEdadNoInformada():
+  return df[df.edad_persona_en_situacion_de_violencia==0].count()[0]
+
+def vinculoAgresorPorEdad():
+  menores = df[(df.edad_persona_en_situacion_de_violencia<18) & (df.edad_persona_en_situacion_de_violencia>0)]
+  mayores = df[df.edad_persona_en_situacion_de_violencia>17]
+
+def totalProvincia():
+  totalesPorProv = df.groupby('Ubicación').genero_persona_en_situacion_de_violencia.count()
+  return totalesPorProv
+
+def maxProvincia():
+  totalesPorProv = df.groupby('Ubicación').genero_persona_en_situacion_de_violencia.count()
+  return [totalesPorProv.idxmax(), totalesPorProv.max()]
+
+def minProvincia():
+  totalesPorProv = df.groupby('Ubicación').genero_persona_en_situacion_de_violencia.min()[1]
+  return totalesPorProv
+
+
+print(maxProvincia())
+
 
 #def distribucionProvincias():
 #   return [maxima, minima, totalProvincia]
