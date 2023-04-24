@@ -1,24 +1,48 @@
-'''
-Ejercicio 1. ¿De cuántos modos diferentes se pueden ordenar los colores del arcoíris?
-Respuesta: 5040.
-Ejercicio 2. ¿De cuántas formas distintas se pueden ordenar 10 libros en una biblioteca?
-Respuesta: 3.628.800.
-Ejercicio 3. Un comité de ocho personas debe elegir un presidente, un vicepresidente y
-un secretario. ¿De cuántas maneras se puede hacer esta selección?
+import numpy as np
 
-Respuesta: 336
-Ejercicio 4. Un ingeniero químico está diseñando un experimento para determinar el
-efecto de temperatura, la razón de activación y el tipo de catalizador en la producción
-de reacción dada. Quiere estudiar cinco temperaturas diferentes de reacción, dos
-razones de activación distintas y cuatro catalizadores diferentes. Si cada operación del
-experimento implica la elección de una temperatura, una razón de activación y un
-catalizador, ¿cuántas operaciones diferentes son posibles?
+# permutaciones: m!
+# variaciones: m!/ (m-n)!
+# combinaciones: m! / (m-n)!n!
+# m: total del grupo. n: porción del grupo.
 
-Respuesta: 40
-Ejercicio 5. Dado 9 puntos en un plano, ¿cuántos segmento diferentes que tengan 2 de
-esos puntos por extremos se pueden determinar?
+def permutacion(m):
+  return np.math.factorial(m)
 
-Respuesta: 36
+def variacion(m,n):
+  res = np.math.factorial(m) / np.math.factorial(m-n)
+  return res
+
+def combinacion(m,n):
+  res = np.math.factorial(m) / (np.math.factorial(m-n) * np.math.factorial(n))
+
+#Ejercicio 1. ¿De cuántos modos diferentes se pueden ordenar los colores del arcoíris?
+#Respuesta: 5040.
+#print(permutacion(7))
+
+#Ejercicio 2. ¿De cuántas formas distintas se pueden ordenar 10 libros en una biblioteca?
+#Respuesta: 3.628.800.
+#print(permutacion(10))
+
+
+#Ejercicio 3. Un comité de ocho personas debe elegir un presidente, un vicepresidente y
+#un secretario. ¿De cuántas maneras se puede hacer esta selección?
+#Respuesta: 336
+#variacion(8,3)
+
+#Ejercicio 4. Un ingeniero químico está diseñando un experimento para determinar el
+#efecto de temperatura, la razón de activación y el tipo de catalizador en la producción
+#de reacción dada. Quiere estudiar cinco temperaturas diferentes de reacción, dos
+#razones de activación distintas y cuatro catalizadores diferentes. Si cada operación del
+#experimento implica la elección de una temperatura, una razón de activación y un
+#catalizador, ¿cuántas operaciones diferentes son posibles?
+#Respuesta: 40
+
+#Ejercicio 5. Dado 9 puntos en un plano, ¿cuántos segmento diferentes que tengan 2 de
+#esos puntos por extremos se pueden determinar?
+#combinacion(9,2)
+#Respuesta: 36
+
+'''  
 Ejercicio 6. Diez ingenieros han solicitado un puesto administrativo en una gran
 empresa. Se seleccionará a cuatro de ellos como finalistas para el puesto. ¿De cuántas
 maneras se puede hacer esta selección?
