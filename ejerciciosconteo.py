@@ -14,6 +14,7 @@ def variacion(m,n):
 
 def combinacion(m,n):
   res = np.math.factorial(m) / (np.math.factorial(m-n) * np.math.factorial(n))
+  return res
 
 #Ejercicio 1. ¿De cuántos modos diferentes se pueden ordenar los colores del arcoíris?
 #Respuesta: 5040.
@@ -27,7 +28,7 @@ def combinacion(m,n):
 #Ejercicio 3. Un comité de ocho personas debe elegir un presidente, un vicepresidente y
 #un secretario. ¿De cuántas maneras se puede hacer esta selección?
 #Respuesta: 336
-#variacion(8,3)
+#print(variacion(8,3))
 
 #Ejercicio 4. Un ingeniero químico está diseñando un experimento para determinar el
 #efecto de temperatura, la razón de activación y el tipo de catalizador en la producción
@@ -39,7 +40,7 @@ def combinacion(m,n):
 
 #Ejercicio 5. Dado 9 puntos en un plano, ¿cuántos segmento diferentes que tengan 2 de
 #esos puntos por extremos se pueden determinar?
-#combinacion(9,2)
+#print(combinacion(9,2))
 #Respuesta: 36
 
 '''  
